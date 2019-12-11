@@ -6,15 +6,18 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.content.res.AppCompatResources;
 import android.view.View;
 
 /**
  * This file is part of Toasty.
  * 
  * Toasty is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * 
@@ -49,9 +52,10 @@ final class ToastyUtils {
     }
 
     static Drawable getDrawable(@NonNull Context context, @DrawableRes int id) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            return context.getDrawable(id);
-        else
-            return context.getResources().getDrawable(id);
+        return AppCompatResources.getDrawable(context, id);
+    }
+
+    static int getColor(@NonNull Context context, @ColorRes int color){
+        return ContextCompat.getColor(context, color);
     }
 }
