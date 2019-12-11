@@ -11,6 +11,7 @@ import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.Toast;
 
+import es.dmoral.toasty.QuoteGenerator;
 import es.dmoral.toasty.Toasty;
 
 import static android.graphics.Typeface.BOLD_ITALIC;
@@ -93,6 +94,13 @@ public class MainActivity extends AppCompatActivity {
                 Toasty.Config.reset(); // Use this if you want to use the configuration above only once
             }
         });
+        findViewById(R.id.button_quote).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                       Toasty.info(MainActivity.this, new QuoteGenerator().getRandomQuote(getAssets())).show();
+                    }
+                });
     }
 
     private CharSequence getFormattedMessage() {
