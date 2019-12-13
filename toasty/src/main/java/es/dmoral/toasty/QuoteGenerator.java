@@ -1,6 +1,7 @@
 package es.dmoral.toasty;
 
 import android.content.res.AssetManager;
+import android.content.res.Resources;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,10 +13,29 @@ import java.util.Random;
 public class QuoteGenerator {
     private static final Random rand = new Random();
     public String getRandomQuote(AssetManager mgr) {
+        return getRandomQuote(mgr, "quotes.txt");
+    }
+
+    public String getRandomQuote(AssetManager mgr, String fileName) {
         try {
-            List<String> quotes = readQuotes(mgr.open("quotes.txt"));
+            List<String> quotes = readQuotes(mgr.open(fileName));
             return quotes.get(rand.nextInt(quotes.size()));
         } catch (IOException e) {
+            return "I got an IOException - Matt Insko";
+        }
+    }
+
+    public String getRandomQuote(Resources res) {
+        return getRandomQuote(res, R.raw.quotes);
+    }
+
+    public String getRandomQuote(Resources res, int resID) {
+
+        try {
+            List<String> quotes = readQuotes(res.openRawResource(resID));
+            return quotes.get(rand.nextInt(quotes.size()));
+        } catch (IOException e) {
+            e.printStackTrace();
             return "I got an IOException - Matt Insko";
         }
     }

@@ -111,6 +111,26 @@
                 android:id="@+id/button_quote"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
+        <Button
+                android:text="@string/quote_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_quote"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/button_quote_2"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        <Button
+                android:text="@string/quote_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_quote_2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/button_quote_3"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 </ScrollView>

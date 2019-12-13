@@ -1,3 +1,4 @@
+#https://github.com/erossignon/qod4outlook/blob/master/quotes.txt
 “Dogs have Owners, Cats have Staff.”
 “I do not fear computers. I fear lack of them.” – Isaac Asimov
 “A computer once beat me at chess, but it was no match for me at kick boxing.” – Emo Philips
@@ -344,7 +345,6 @@ No change is bad” Toyota President Katsuaki Watanabe (Osono et al 2008, 15)
 “Software developers like to solve problems. If there are no problems handily available, they will create their own problems.”
 “The problem with quick and dirty, is that the dirty remains long after the quick has been forgotten” – Steve C. McConnell
 “Prolific developers don’t always write a lot of code, instead they solve a lot of problems. The two things are not the same.” – J. Chambers
-#https://github.com/erossignon/qod4outlook/blob/master/quotes.txt
 “A programmer’s wife tells him: go to store. pick up a loaf of bread. If they have eggs, get a dozen. The programmer returns with 12 loaves.”
 “Bad programmers have all the answers. Good testers have all the questions.” – Gil Zilberfeld
 “Our job is to tell you your baby is ugly!” – Software Testers

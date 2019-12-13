@@ -1,5 +1,6 @@
 package es.dmoral.toastysample;
 
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -13,6 +14,9 @@ import android.widget.Toast;
 
 import es.dmoral.toasty.QuoteGenerator;
 import es.dmoral.toasty.Toasty;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringBufferInputStream;
 
 import static android.graphics.Typeface.BOLD_ITALIC;
 
@@ -98,9 +102,54 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                       Toasty.info(MainActivity.this, new QuoteGenerator().getRandomQuote(getAssets())).show();
+                        Toasty.info(MainActivity.this, new QuoteGenerator().getRandomQuote(getAssets())).show();
                     }
                 });
+        findViewById(R.id.button_quote_2).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toasty.info(MainActivity.this, new QuoteGenerator().getRandomQuote(getResources())).show();
+                    }
+                });
+        findViewById(R.id.button_quote_3).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toasty.info(MainActivity.this, randomRead()).show();
+                    }
+                });
+    }
+
+    private String randomRead() {
+        try {
+            //AssetManager.AssetInputStream in = (AssetManager.AssetInputStream) getResources().getAssets().open("random.txt", AssetManager.ACCESS_BUFFER);
+            //InputStream in = getResources().getAssets().open("random.txt", AssetManager.ACCESS_RANDOM);
+            InputStream in = new StringBufferInputStream("HelloThere");
+            StringBuilder sb = new StringBuilder();
+            while (in.skip(3) > 0) {
+     //           in.skip(-2);
+                int i = in.read();
+                if (i > -1) {
+                    sb.append((char)i);
+                }
+            }
+//            for (int i= 0; i < 5; i++) {
+//                in.mark(5);
+//                int c = in.read();
+//                if (c > -1) {
+//                    sb.append((char)c);
+//                }
+//                in.reset();
+//            }
+
+            return sb.toString();
+            //InputStream in =  getResources().openRawResource(R.raw.quotes);
+            //return in.getClass().getName();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Exception";
+        }
     }
 
     private CharSequence getFormattedMessage() {
