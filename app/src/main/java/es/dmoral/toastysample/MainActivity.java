@@ -1,7 +1,5 @@
 package es.dmoral.toastysample;
 
-import android.content.res.AssetManager;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -10,11 +8,11 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
 import android.view.View;
-import android.widget.Toast;
 
+import es.dmoral.toasty.LibQuoteGenerator;
 import es.dmoral.toasty.QuoteGenerator;
 import es.dmoral.toasty.Toasty;
-import java.io.IOException;
+
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
 
@@ -98,18 +96,21 @@ public class MainActivity extends AppCompatActivity {
                 Toasty.Config.reset(); // Use this if you want to use the configuration above only once
             }
         });
+        final boolean useLibraryGenerator = false;
         findViewById(R.id.button_quote).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toasty.info(MainActivity.this, new QuoteGenerator().getRandomQuote(getAssets())).show();
+                        Toasty.info(MainActivity.this, getGenerator(useLibraryGenerator).getRandomQuote(getAssets())).show();
+                        Toasty.info(MainActivity.this, getGenerator(useLibraryGenerator).getRandomQuote(getAssets(), "movie_quotes.txt")).show();
                     }
                 });
         findViewById(R.id.button_quote_2).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toasty.info(MainActivity.this, new QuoteGenerator().getRandomQuote(getResources())).show();
+                        Toasty.info(MainActivity.this, getGenerator(useLibraryGenerator).getRandomQuote(getResources())).show();
+                        Toasty.info(MainActivity.this, getGenerator(useLibraryGenerator).getRandomQuote(getResources(), R.raw.movie_quotes)).show();
                     }
                 });
         findViewById(R.id.button_quote_3).setOnClickListener(
@@ -119,6 +120,22 @@ public class MainActivity extends AppCompatActivity {
                         Toasty.info(MainActivity.this, randomRead()).show();
                     }
                 });
+        hideSomeButtons();
+    }
+
+    private void hideSomeButtons() {
+        findViewById(R.id.button_error_toast).setVisibility(View.INVISIBLE);
+        findViewById(R.id.button_success_toast).setVisibility(View.INVISIBLE);
+        findViewById(R.id.button_info_toast).setVisibility(View.INVISIBLE);
+        findViewById(R.id.button_warning_toast).setVisibility(View.INVISIBLE);
+        findViewById(R.id.button_normal_toast_wo_icon).setVisibility(View.INVISIBLE);
+        findViewById(R.id.button_normal_toast_w_icon).setVisibility(View.INVISIBLE);
+        findViewById(R.id.button_info_toast_with_formatting).setVisibility(View.INVISIBLE);
+        findViewById(R.id.button_quote_3).setVisibility(View.INVISIBLE);
+    }
+
+    private static QuoteGenerator getGenerator(boolean useLibrary) {
+        return useLibrary ? new LibQuoteGenerator() : new AppQuoteGenerator();
     }
 
     private String randomRead() {

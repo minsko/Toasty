@@ -8,8 +8,8 @@
     <string name="error_toast">ERROR TOAST</string>
     <string name="success_toast">SUCCESS TOAST</string>
     <string name="custom_configuration">CUSTOM CONFIGURATION</string>
-    <string name="quote">QUOTE</string>
-    <string name="quote_2">QUOTE II</string>
+    <string name="quote">Two Quotes (Asset)</string>
+    <string name="quote_2">Two Quotes (Raw Resource)</string>
     <string name="quote_3">QUOTE III</string>
 
     <string name="error_message">This is an error toast.</string>
